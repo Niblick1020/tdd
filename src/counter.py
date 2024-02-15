@@ -46,3 +46,11 @@ def read_counter(name):
         # Return the counter
         return jsonify({name: COUNTERS[name]}), status.HTTP_200_OK
 
+@app.route('/counters/<name>', methods=['DELETE'])
+def delete_counter(name):
+    """Delete an existing counter. If it doesn't exist, return a not found error."""
+    if name in COUNTERS:
+        del COUNTERS[name]
+        return '', status.HTTP_204_NO_CONTENT
+    else:
+        return jsonify({"Message": f"Counter {name} does not exist"}), status.HTTP_404_NOT_FOUND
