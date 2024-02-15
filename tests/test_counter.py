@@ -55,14 +55,14 @@ class CounterTest(TestCase):
 
         self.assertEqual(response_data['foo'], 2)
 
-def test_delete_counter(self):
-    """Test deleting an existing counter."""
-    self.client.post('/counters/test')  # Create a counter to delete
-    delete_result = self.client.delete('/counters/test')
-    self.assertEqual(delete_result.status_code, status.HTTP_204_NO_CONTENT)
-    
-    # Verify the counter is deleted
-    get_result = self.client.get('/counters/test')
-    self.assertEqual(get_result.status_code, status.HTTP_404_NOT_FOUND)
+    def test_delete_counter(self):
+        """Test deleting an existing counter."""
+        self.client.post('/counters/test')  # Create a counter to delete
+        delete_result = self.client.delete('/counters/test')
+        self.assertEqual(delete_result.status_code, status.HTTP_204_NO_CONTENT)
+        
+        # Verify the counter is deleted
+        get_result = self.client.get('/counters/test')
+        self.assertEqual(get_result.status_code, status.HTTP_404_NOT_FOUND)
 
 
