@@ -1,15 +1,13 @@
-# counter.py
-
 from flask import Flask, jsonify
-
 import status
 
 app = Flask(__name__)
 
 COUNTERS = {}
 
-@app.route('/counters/<name>', methods=['POST'])
 
+
+@app.route('/counters/<name>', methods=['POST'])
 def create_or_reject_counter(name):
     """Create a new counter if it does not exist. If it exists, reject with a
     conflict error."""
@@ -21,8 +19,8 @@ def create_or_reject_counter(name):
         COUNTERS[name] = 1
         return jsonify({name: COUNTERS[name]}), status.HTTP_201_CREATED
 
-@app.route('/counters/<name>', methods=['PUT'])
 
+@app.route('/counters/<name>', methods=['PUT'])
 def update_counter(name):
     """Increment an existing counter by 1. If it doesn't exist, return a not
     found error."""
@@ -45,6 +43,7 @@ def read_counter(name):
     else:
         # Return the counter
         return jsonify({name: COUNTERS[name]}), status.HTTP_200_OK
+
 
 @app.route('/counters/<name>', methods=['DELETE'])
 def delete_counter(name):
