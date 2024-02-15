@@ -6,7 +6,6 @@ app = Flask(__name__)
 COUNTERS = {}
 
 
-
 @app.route('/counters/<name>', methods=['POST'])
 def create_or_reject_counter(name):
     """Create a new counter if it does not exist. If it exists, reject with a
